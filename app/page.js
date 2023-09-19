@@ -3,7 +3,7 @@ import Week from "./week";
 
 export default function Home() {
   return (
-    <main class="bg-slate-950 flex flex-col items-center justify-between p-24">
+    <main class="bg-slate-950 flex flex-col p-8">
       <div>
         <div>
           <h1 class="text-4xl">CPRG 306: Web Development 2 - Assignments</h1>

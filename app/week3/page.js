@@ -3,12 +3,10 @@ import HomePage from "../homePage";
 
 export default function Home() {
   return (
-    <main class="bg-slate-950">
+    <main class="bg-slate-950 p-8">
 
         <div>
-            <h1 class="text-3xl font-bold m-2">
-                Shopping List
-            </h1>
+            <h1 class="text-4xl font-bold">Shopping List</h1>
         </div>
 
         <div>
