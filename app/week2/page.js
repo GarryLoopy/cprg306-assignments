@@ -4,7 +4,7 @@ import HomePage from "../homePage"
 
 export default function Home() {
   return (
-    <main>
+    <main class="bg-slate-950">
           <h1>My Shopping Lists</h1>
           <StudentInfo />
           <HomePage />
