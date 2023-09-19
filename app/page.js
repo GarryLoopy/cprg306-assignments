@@ -1,5 +1,6 @@
 import StudentInfo from "./StudentInfo";
 import Link from "next/link";
+import Week from "./week";
 
 export default function Home() {
   return (
@@ -9,13 +10,8 @@ export default function Home() {
             <StudentInfo />
           </div>
 
-          <div>
-            <Link href="/week2">Week 2</Link>
-          </div>
-
-          <div>
-            <Link href="/week3">Week 3</Link>
-          </div>
+          <Week weekNumber="2" />
+          <Week weekNumber="3" />
     </main>
   );
 }

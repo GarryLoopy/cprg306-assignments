@@ -1,6 +1,6 @@
 import ItemList from "./item-list";
 import Link from "next/link";
-
+import HomePage from "../homePage";
 export default function Home() {
   return (
     <main class="bg-slate-950">
@@ -16,7 +16,7 @@ export default function Home() {
         </div>
 
         <div>
-            <Link href="/">Home</Link>
+            <HomePage />
         </div>
     </main>
   );
