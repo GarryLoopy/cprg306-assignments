@@ -1,17 +1,21 @@
 import StudentInfo from "./StudentInfo";
-import Link from "next/link";
 import Week from "./week";
 
 export default function Home() {
   return (
-    <main class="bg-slate-950">
-          <div>
-            <h1>CPRG 306: Web Development 2 - Assignments</h1>
-            <StudentInfo />
-          </div>
+    <main class="bg-slate-950 flex flex-col items-center justify-between p-24">
+      <div>
+        <div>
+          <h1 class="text-4xl">CPRG 306: Web Development 2 - Assignments</h1>
+          <StudentInfo />
+        </div>
 
+        <div>
           <Week weekNumber="2" />
           <Week weekNumber="3" />
+        </div>
+      </div>
+
     </main>
   );
 }
