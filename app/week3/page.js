@@ -1,20 +1,19 @@
 import ItemList from "./item-list";
-import HomePage from "../homePage";
+import NavBar from "../navbar";
 
-export default function Home() {
+export default function Page() {
   return (
-    <main class="bg-slate-950 p-8">
+    <main class="p-8">
+        <div>
+          <NavBar />
+        </div>
 
         <div>
-            <h1 class="text-4xl font-bold">Shopping List</h1>
+            <h1 class="text-4xl">Shopping List</h1>
         </div>
 
         <div>
             <ItemList />
-        </div>
-
-        <div>
-            <HomePage />
         </div>
     </main>
   );

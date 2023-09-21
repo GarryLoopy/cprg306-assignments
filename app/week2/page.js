@@ -1,13 +1,15 @@
-import StudentInfo from "../StudentInfo";
-import Link from "next/link";
-import HomePage from "../homePage"
+import StudentInfo from "../studentInfo";
+import NavBar from "../navbar";
 
-export default function Home() {
+export default function Page() {
   return (
-    <main class="bg-slate-950 p-8">
+    <main class="p-8">
+
+        <div>
+          <NavBar />
+        </div>
         <h1 class="text-4xl">My Shopping Lists</h1>
         <StudentInfo />
-        <HomePage />
     </main>
   );
 }

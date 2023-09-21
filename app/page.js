@@ -1,21 +1,36 @@
-import StudentInfo from "./StudentInfo";
+import StudentInfo from "./studentInfo";
 import Week from "./week";
+import NavBar from "./navbar";
 
-export default function Home() {
+const currentWeek = 4;
+
+function createDivWithComponents(n) {
+  const components = [];
+  for (let i = 2; i <= n; i++) {
+    components.push(<Week weekNumber={i} />);
+  }
+  return <div>{components}</div>;
+}
+
+export default function Page() {
   return (
-    <main class="bg-slate-950 flex flex-col p-8">
+    <main class="flex flex-col p-8">
       <div>
+        <div>
+          <NavBar />
+        </div>
+
         <div>
           <h1 class="text-4xl">CPRG 306: Web Development 2 - Assignments</h1>
           <StudentInfo />
         </div>
 
-        <div>
-          <Week weekNumber="2" />
-          <Week weekNumber="3" />
-        </div>
+        {createDivWithComponents(currentWeek)}
       </div>
 
     </main>
   );
 }
+
+
+
