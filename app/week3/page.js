@@ -3,7 +3,7 @@ import NavBar from "../navbar";
 
 export default function Page() {
   return (
-    <main class="p-8">
+    <main class="p-8 bg-slate-900 min-h-screen">
         <div>
           <NavBar />
         </div>

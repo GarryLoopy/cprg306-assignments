@@ -14,7 +14,7 @@ function createDivWithComponents(n) {
 
 export default function Page() {
   return (
-    <main class="flex flex-col p-8">
+    <main class="flex flex-col p-8 h-screen  bg-slate-800">
       <div>
         <div>
           <NavBar />

@@ -1,12 +1,14 @@
 import NavBar from "../navbar";
+import NewItem from "./new-item";
 
 export default function Page() {
     return (
         <main class="p-8">
             <div>
                 <NavBar />
-                <h1>Week 4 not yet available </h1>
             </div>
+            
+            <NewItem />
         </main>
     );
 }
