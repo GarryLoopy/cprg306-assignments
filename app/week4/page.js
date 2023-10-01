@@ -1,13 +1,10 @@
-import NavBar from "../navbar";
 import NewItem from "./new-item";
+import NavBar from "../navbar";
 
 export default function Page() {
     return (
-        <main class="p-8">
-            <div>
-                <NavBar />
-            </div>
-            
+        <main>
+            <NavBar />
             <NewItem />
         </main>
     );
