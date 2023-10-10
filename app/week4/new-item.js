@@ -59,7 +59,7 @@ export default function NewItem() {
                 <option value="Other">Other</option>
             </select>
 
-            <input class="py-4 text-gray-300 bg-slate-800 hover:bg-slate-500 hover:text-gray-900 rounded-md" type="submit" value="Add Item"/>
+            <input class="py-4 text-gray-200 bg-slate-900 hover:bg-slate-800 active:bg-slate-700 rounded-md" type="submit" value="Add Item"/>
         </form>
     );
 }

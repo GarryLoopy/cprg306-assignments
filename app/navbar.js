@@ -2,15 +2,16 @@ import Link from 'next/link';
 
 export default function NavBar() {
     return (
-        <nav class="text-white py-4 border-b-2 border-slate-900">
+        <nav class="text-white py-4 border-b-2 border-slate-700">
             <div class="container px-2">
                 <ul class="flex space-x-3">
                     <li><LinkItem path='/' title='Home' /></li>
                     <li><LinkItem path='/week2' title='Week 2' /></li>
                     <li><LinkItem path='/week3' title='Week 3' /></li>
                     <li><LinkItem path='/week4' title='Week 4' /></li>
+                    <li><LinkItem path='/week5' title='Week 5'></LinkItem></li>
 
-                    <li><LinkItem path='/testPage' title='Test Page' /></li>
+                    <li><LinkItem path='/testPage1' title='Movement' /></li>
                 </ul>
             </div>
         </nav>
