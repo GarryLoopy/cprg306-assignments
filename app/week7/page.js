@@ -12,7 +12,7 @@ import itemsJson from "./items.json";
 
 export default function Page() {
   const [items, setItems] = useState([...itemsJson]);
-  const [clickedItem, setClickedItem] = useState("");
+  const [selectedItem, setSelectedItem] = useState("");
 
   const handleAddItem = (item) => {
     setItems(
@@ -20,8 +20,12 @@ export default function Page() {
     )
   }
 
-  const handleOnItemClick = (itemName) => {
-    setClickedItem(itemName);
+  const handleOnItemSelect = (item) => {
+    // setSelectedItem(item);
+    
+    let currentItem = item.name.split(',')[0];
+
+    setSelectedItem(currentItem);
   }
 
   return (
@@ -39,9 +43,9 @@ export default function Page() {
         </div>
         
         <div className="flex">
-            <ItemList items={items} onItemClick={handleOnItemClick}/>
+            <ItemList items={items} onItemSelect={handleOnItemSelect}/>
             
-            <MealIdeas ingredient={clickedItem}/>
+            <MealIdeas ingredient={selectedItem}/>
         </div>
     </main>
   );

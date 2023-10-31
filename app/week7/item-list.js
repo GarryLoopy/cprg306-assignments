@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Item from './item';
 
-export default function ItemList( { items, onItemClick } ) {
+export default function ItemList( { items, onItemSelect } ) {
     const [sortBy, setSortBy] = useState('name');
     const [grouped, setGrouped] = useState(false);
 
@@ -39,8 +39,8 @@ export default function ItemList( { items, onItemClick } ) {
         }, {}
     );
 
-    const handleItemClick = (itemName) => {
-        onItemClick(itemName);
+    const handleItemSelect = (item) => {
+        onItemSelect(item);
     }
 
     return (
@@ -74,7 +74,7 @@ export default function ItemList( { items, onItemClick } ) {
             {!grouped ? (
                 <ul>
                     {displayedItems.map((item) => (
-                        <Item item={item} key={item.id} onItemClick={handleItemClick}/>
+                        <Item item={item} key={item.id} onSelect={handleItemSelect}/>
                     ))}
                 </ul>
             ) : (
@@ -83,7 +83,7 @@ export default function ItemList( { items, onItemClick } ) {
                         <h2>{category}</h2>
                         <ul>
                             {groupedItems[category].map((item) => (
-                                <Item item={item} key={item.id} onItemClick={handleItemClick}/>
+                                <Item item={item} key={item.id} onSelect={handleItemSelect}/>
                             ))}
                         </ul>
                     </div>
