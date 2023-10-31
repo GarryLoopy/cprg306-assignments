@@ -41,7 +41,7 @@ export default function Page() {
         <div className="flex">
             <ItemList items={items} onItemClick={handleOnItemClick}/>
             
-            <MealIdeas onItemClick={clickedItem}/>
+            <MealIdeas ingredient={clickedItem}/>
         </div>
     </main>
   );
