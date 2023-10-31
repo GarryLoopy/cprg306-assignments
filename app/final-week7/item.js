@@ -1,17 +1,8 @@
 export default function Item( {item} ) {
     return(
-        <li className="flex justify-center">    
-            <h2>{item.name}</h2>
-            <p>Buy {item.quantity} in {item.category}</p>
+        <li className="text-center p-4 border rounded-lg text-gray-400 border-gray-800 bg-gray-950 hover:bg-gray-800 hover:border-gray-700 hover:cursor-pointer hover:text-white">    
+            <h2 className="text-lg text-gray-400">{item.name}</h2>
+            <p className="text-md">Buy {item.quantity} in {item.category}</p>
         </li>
     )
 }
-
-// export default function Item({ item, onItemClick }) {
-//     return (
-//         <li class="p-2 ml-2 mt-4 mb-4 bg-violet-800 hover:bg-violet-900 max-w-sm rounded-r-xl" onClick={ () => onItemClick(item.name)}>
-//             <h2 class="text-xl font-bold">{item.name}</h2>
-//             <p class="text-sm">Buy {item.quantity} in {item.category}</p>
-//         </li>
-//     );
-// }
