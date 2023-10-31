@@ -11,6 +11,7 @@ export default function NavBar() {
                     <li><LinkItem path='/week4' title='Week 4' /></li>
                     <li><LinkItem path='/week5' title='Week 5' /></li>
                     <li><LinkItem path='/week6' title='Week 6' /></li>
+                    <li><LinkItem path='/week7' title='Week 7' /></li>
 
                     <li><LinkItem path='/testPage1' title='Movement' /></li>
                 </ul>

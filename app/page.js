@@ -1,8 +1,8 @@
-import StudentInfo from "./studentInfo";
+import StudentInfo from "./StudentInfo";
 import Week from "./week";
 import NavBar from "./navbar";
 
-const currentWeek = 6;
+const currentWeek = 7;
 
 function createDivWithComponents(n) {
   const components = [];
