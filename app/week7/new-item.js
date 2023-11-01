@@ -2,10 +2,24 @@
 
 import { useState } from "react";
 
+const generateRandomId = () => {
+    const possibleChars = "1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
+    const length = possibleChars.length;
+    const idLength = 18;
+
+    let currentId = "";
+    for (let i = 0; i < idLength; i++) {
+        currentId += possibleChars.charAt(Math.random() * length);
+    }
+
+    return currentId;
+}
+
 export default function NewItem( { onAddItem } ) {
     const [name, setName] = useState("");
     const [quantity, setQuantity] = useState(1);
     const [category, setCategory] = useState("Produce");
+
 
     const handleSubmit = (event) => {
         // Prevents the form's default submission behavior
@@ -16,6 +30,7 @@ export default function NewItem( { onAddItem } ) {
             name: name.toLowerCase(),
             quantity: quantity,
             category: category.toLowerCase(),
+            id: generateRandomId(),
         }  
 
         onAddItem(newItem)

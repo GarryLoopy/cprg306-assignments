@@ -8,11 +8,25 @@ import MealIdeas from "./meal-ideas";
 
 import { useState } from "react";
 
+
+
+// const example = [
+//     {
+//         "id": "1h2GJKH12gkHG31h1H",
+//         "name": "milk, 4 L 🥛",
+//         "quantity": 1,
+//         "category": "dairy"
+//     }
+// ]
+
 export default function Page() {
     const [items, setItems] = useState([...jsonData]);
     const [selectedItem, setSelectedItem] = useState("bananas");
 
     const handleAddItem = (item) => {
+        
+        console.log(item["id"])
+
         setItems(
             [...items, item]
         )
