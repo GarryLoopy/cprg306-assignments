@@ -10,53 +10,51 @@ const fetchMealIdeas = async (ingredient) => {
 };
 
 const fetchMealInfo = async (mealId) => {
-    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`);
-    const data = await response.json(); // Await the response.json() method
+    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)
+    const data = await response.json();
     return data;
-};
+}
+
 
 export default function MealIdeas( {ingredient} ) {
     const [meals, setMeals] = useState([]);
 
-    const [mealInfo, setMealInfo] = useState({});
+    const [mealInfo, setMealInfo] = useState([]);
+
     const [selectedMeal, setSelectedMeal] = useState("");
 
     const loadMealIdeas = async () => {
         const data = await fetchMealIdeas(ingredient);
         setMeals(data["meals"]);
     }
-
     const loadMealInfo = async () => {
-        try {
-            if (!meals) return;
-            const mealIds = meals.map((meal) => meal.idMeal);
-            const requests = mealIds.map((id) => fetchMealInfo(id));
-            const responses = await Promise.all(requests);
-            const data = responses.reduce((accumulator, current) => {
-                accumulator[mealIds] = current;
-                return accumulator;
-            }, {});
-            setMealInfo(data);
-        } catch (error) {
-            console.error(error);
-        }
-    };
+        const data = await fetchMealInfo(selectedMeal);
+        setMealInfo(data["meals"]);
+    }
 
     useEffect(
         () => {
             try {
                 loadMealIdeas();
+
                 setSelectedMeal("");
-                if (!meals) return;
-                loadMealInfo();
+                setMealInfo({});
+
             } catch (error) {
                 console.error(error);
             }
         }, [ingredient]
     )
 
+
     const handleOnMealItemClick = (meal) => {
         setSelectedMeal(meal["idMeal"]);
+    
+        try{
+            loadMealInfo();
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
