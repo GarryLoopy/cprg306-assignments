@@ -38,7 +38,7 @@ export default function NewItem( { onAddItem } ) {
     };
 
     return (
-        <form onSubmit={handleSubmit} class="flex flex-col gap-2 p-6 m-4 rounded-md text-gray-800 bg-slate-600">
+        <form onSubmit={handleSubmit} class="flex flex-col gap-2 p-6 m-4 rounded-md text-gray-800 bg-gray-950 border border-gray-800 ">
             <input class="px-2 py-3 text-center bg-gray-100 focus:bg-white hover:bg-white rounded-md" type="text" value={name} onChange={handleNameChange} placeholder="Item Name" required/>
             <input class="px-2 py-3 text-center bg-gray-100 focus:bg-white hover:bg-white rounded-md" type="number" min="1" max="99" value={quantity} onChange={handleQuantityChange} required/>
             
@@ -56,7 +56,11 @@ export default function NewItem( { onAddItem } ) {
                 <option value="Other">Other</option>
             </select>
 
-            <input class="py-4 text-gray-200 bg-slate-900 hover:bg-slate-800 active:bg-slate-700 rounded-md" type="submit" value="Add Item"/>
+            <input class="py-4 border border-gray-800 
+                        hover:bg-gray-800 text-gray-400 bg-slate-900 
+                        hover:cursor-pointer active:bg-slate-700 
+                        hover:text-white rounded-md
+                        hover:border-gray-700 " type="submit" value="Add Item"/>
         </form>
     );
 }

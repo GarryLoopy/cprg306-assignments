@@ -1,52 +1,41 @@
 "use client";
 
-import { useState } from "react";
-
+import jsonData from "./items.json";
 import ItemList from "./item-list";
 import NewItem from "./new-item";
-import NavBar from "../navbar";
 
 import MealIdeas from "./meal-ideas";
 
-import itemsJson from "./items.json";
+import { useState } from "react";
 
 export default function Page() {
-  const [items, setItems] = useState([...itemsJson]);
-  const [selectedItem, setSelectedItem] = useState("");
+    const [items, setItems] = useState([...jsonData]);
+    const [selectedItem, setSelectedItem] = useState("bananas");
 
-  const handleAddItem = (item) => {
-    setItems(
-      [...items, item]
+    const handleAddItem = (item) => {
+        setItems(
+            [...items, item]
+        )
+    }
+
+    const handleOnItemSelect = (itemName) => {
+        let finalItemName = itemName.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '');
+        finalItemName = finalItemName.split(',')[0]
+        finalItemName = finalItemName.trim();
+
+        setSelectedItem(finalItemName);
+    }
+
+    return (
+        <main className="flex">
+            <div className="flex-1">
+                <NewItem onAddItem={handleAddItem}/>
+                <ItemList items={items} onItemSelect={handleOnItemSelect}/>
+            </div>
+
+            <div className="flex-1">
+                <MealIdeas ingredient={selectedItem}/>
+            </div>
+        </main>
     )
-  }
-
-  const handleOnItemSelect = (item) => {
-    // setSelectedItem(item);
-    
-    let currentItem = item.name.split(',')[0];
-
-    setSelectedItem(currentItem);
-  }
-
-  return (
-    <main class="p-8 bg-slate-900 min-h-screen">
-        <div>
-          <NavBar />
-        </div>
-
-        <div>
-          <NewItem onAddItem={handleAddItem}/>
-        </div>
-
-        <div>
-            <h1 class="text-4xl">Shopping List</h1>
-        </div>
-        
-        <div className="flex">
-            <ItemList items={items} onItemSelect={handleOnItemSelect}/>
-            
-            <MealIdeas ingredient={selectedItem}/>
-        </div>
-    </main>
-  );
 }

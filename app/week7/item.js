@@ -1,19 +1,15 @@
-export default function Item({ item, onSelect }) {
+export default function Item( {item, onItemSelect, selectedState} ) {
 
-    const onItemSelect = () => {
-        const currentItem = {
-                id: item.id,
-                name: item.name,
-                quantity: item.quantity,
-                category: item.category
-        }
-        onSelect(currentItem);
+    const handleOnItemSelect = () => {
+        onItemSelect(item.name);
     }
 
-    return (
-        <li class="p-2 ml-2 mt-4 mb-4 bg-violet-800 hover:bg-violet-900 max-w-sm rounded-r-xl" onClick={onItemSelect}>
-            <h2 class="text-xl font-bold">{item.name}</h2>
-            <p class="text-sm">Buy {item.quantity} in {item.category}</p>
+    return(
+        <li className={`text-center p-4 border rounded-md text-gray-400 border-gray-800 
+                    bg-gray-950 hover:bg-gray-800 hover:border-gray-700 hover:cursor-pointer 
+                    hover:text-white ${selectedState ? "bg-slate-800 text-white" : ""}`} onClick={handleOnItemSelect}>    
+            <h2 className="text-lg text-gray-400">{item.name}</h2>
+            <p className="text-md">Buy {item.quantity} in {item.category}</p>
         </li>
-    );
+    )
 }
