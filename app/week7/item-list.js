@@ -9,6 +9,15 @@ export default function ItemList( {items, onItemSelect} ) {
     const [sortBy, setSortBy] = useState("name");
     const [groupedByCategory, setGroupedByCategory] = useState(false);
 
+    const [selectedItemId, setSelectedItemId] = useState("4k2J3K1H2GJKH12gk"); //ID for banana
+
+    const handleOnItemSelect = (item) => {
+        setSelectedItemId(item["id"]);
+
+        console.log(selectedItemId);
+
+        onItemSelect(item)
+    }
 
     const handleOnNavigationSelect = (contentType) => {
         switch(contentType) {
@@ -79,13 +88,13 @@ export default function ItemList( {items, onItemSelect} ) {
                               <h2 className="text-xl capitalize pl-2">{group.category}</h2>
                               <ul className="flex flex-col gap-2">
                                   {group.items.map((item) => (
-                                      <Item item={item} key={item.id} onItemSelect={onItemSelect}/>
+                                      <Item item={item} key={item.id} onItemSelect={handleOnItemSelect} selectedItem={item.id === selectedItemId}/>
                                   ))}
                               </ul>
                           </div>
                       ))
                     : displayedItems.map(
-                        (item) => <Item item={item} key={item.id} onItemSelect={onItemSelect}/>
+                        (item) => <Item item={item} key={item.id} onItemSelect={handleOnItemSelect} selectedItem={item.id === selectedItemId}/>
                     )
                 }
             </ul>

@@ -18,8 +18,8 @@ export default function Page() {
         )
     }
 
-    const handleOnItemSelect = (itemName) => {
-        let finalItemName = itemName.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '');
+    const handleOnItemSelect = (item) => {
+        let finalItemName = item["name"].replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '');
         finalItemName = finalItemName.split(',')[0]
         finalItemName = finalItemName.trim();
 
