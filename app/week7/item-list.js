@@ -13,9 +13,6 @@ export default function ItemList( {items, onItemSelect} ) {
 
     const handleOnItemSelect = (item) => {
         setSelectedItemId(item["id"]);
-
-        console.log(selectedItemId);
-
         onItemSelect(item)
     }
 
