@@ -10,16 +10,15 @@ const fetchMealIdeas = async (ingredient) => {
 };
 
 const fetchMealInfo = async (mealId) => {
-    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)
+    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`);
     const data = await response.json();
     return data;
 }
 
-
 export default function MealIdeas( {ingredient} ) {
     const [meals, setMeals] = useState([]);
 
-    const [mealInfo, setMealInfo] = useState([]);
+    const [mealInfos, setMealInfos] = useState([]);
 
     const [selectedMeal, setSelectedMeal] = useState("");
 
@@ -27,9 +26,24 @@ export default function MealIdeas( {ingredient} ) {
         const data = await fetchMealIdeas(ingredient);
         setMeals(data["meals"]);
     }
-    const loadMealInfo = async () => {
-        const data = await fetchMealInfo(selectedMeal);
-        setMealInfo(data["meals"]);
+
+    const loadMealInfos = async () => {
+        if (!meals) return;
+
+        const currentMealInfos = {};
+        await Promise.all(
+            meals.map(
+                async (currentMeal)=> {
+                    const currentId = currentMeal["idMeal"];
+                    const data = await fetchMealInfo(currentId);
+
+                    if (!currentMealInfos[currentId]) {
+                        currentMealInfos[currentId] = data.meals[0];
+                    }
+                }   
+            )
+        )
+        setMealInfos(currentMealInfos);
     }
 
     useEffect(
@@ -38,7 +52,7 @@ export default function MealIdeas( {ingredient} ) {
                 loadMealIdeas();
 
                 setSelectedMeal("");
-                setMealInfo({});
+                setMealInfos([]);
 
             } catch (error) {
                 console.error(error);
@@ -46,15 +60,24 @@ export default function MealIdeas( {ingredient} ) {
         }, [ingredient]
     )
 
+    useEffect(
+        () => {
+            try {
+                loadMealInfos();
+            } catch (error) {
+                console.error(error);
+            }
+            
+        }, [meals]
+    )
 
     const handleOnMealItemClick = (meal) => {
+        if (selectedMeal === meal["idMeal"]){
+            setSelectedMeal("");
+            return;
+        } 
+
         setSelectedMeal(meal["idMeal"]);
-    
-        try{
-            loadMealInfo();
-        } catch (error) {
-            console.log(error);
-        }
     }
 
     return (
@@ -62,8 +85,7 @@ export default function MealIdeas( {ingredient} ) {
             <div className="mb-4 flex flex-col gap-1">
                 <h2 className="text-2xl">Meal Ideas for {ingredient}</h2>
                 <h2 className="text-sm">{meals ? `Found ${meals.length} meals for ${ingredient}` : `No meals found for ${ingredient}`}</h2>
-            </div>
-            
+            </div> 
             
             <ul className="flex flex-col gap-4">
                 {
@@ -75,14 +97,13 @@ export default function MealIdeas( {ingredient} ) {
                             //     {meal["strMeal"]}
                             // </li>
                             <div key={meal["idMeal"]}>
-                                <MealItem  onMealItemClick={handleOnMealItemClick} meal={meal} selectedMeal={selectedMeal === meal["idMeal"]}/>
+                                <MealItem  onMealItemClick={handleOnMealItemClick} meal={meal} selectedMeal={selectedMeal === meal["idMeal"]} mealInfo={mealInfos[meal["idMeal"]]}/>
                             </div>
                         )
                     )
                 
                 }
             </ul>
-
         </div>
     )
 }
