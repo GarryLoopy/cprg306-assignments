@@ -23,11 +23,11 @@ export default function MealItem( {meal, onMealItemClick, selectedMeal, mealInfo
                                 <p className={`text-lg pb-2 ${selectedMeal ? "border-b border-gray-700 pb-4" : ""}`}>{meal["strMeal"]}</p>
                                 {
                                     selectedMeal && 
-                                    <div className="mt-2 pl-2">
+                                    <div className="mt-2 pl-4">
                                         <div className="text-xl">
-                                            <h2>Ingredients</h2>
+                                            <h2>Ingredients needed:</h2>
                                         </div>
-                                        <div className="p-2 flex flex-col gap-1">
+                                        <div className="p-2 pl-4 flex flex-col gap-1">
                                         {
                                             stringOfIngredients.map(
                                                 (currentStringIngredient) => (
