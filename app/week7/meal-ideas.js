@@ -84,7 +84,7 @@ export default function MealIdeas( {ingredient} ) {
         <div className="m-4 p-4 border rounded-md border-gray-800 bg-gray-950">
             <div className="mb-4 flex flex-col gap-1">
                 <h2 className="text-2xl">Meal Ideas for {ingredient}</h2>
-                <h2 className="text-sm">{meals ? `Found ${meals.length} meals for ${ingredient}` : `No meals found for ${ingredient}`}</h2>
+                <h2 className="text-sm">{meals ? `Found ${meals.length} meal ideas for ${ingredient}` : `No meal ideas found for ${ingredient}`}</h2>
             </div> 
             
             <ul className="flex flex-col gap-4">

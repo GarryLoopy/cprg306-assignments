@@ -1,8 +1,3 @@
-/**
- * 
- * @param {object} 
- * @returns 
- */
 export default function Item( {item, onItemSelect, selectedItem} ) {
 
     const handleOnItemSelect = () => {

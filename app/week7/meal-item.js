@@ -2,15 +2,37 @@
 
 export default function MealItem( {meal, onMealItemClick, selectedMeal, mealInfo} ) {
 
-    const getStringOfIngredients = () => {
-        if (!mealInfo) return [];
-        let stringOfIngredients = Object.keys(mealInfo).filter( (key) => key.includes("strIngredient")) ;
-        stringOfIngredients = stringOfIngredients.filter( (key) => mealInfo[key]);
 
-        return stringOfIngredients;
+    const getIngredients = () => {
+        if (!mealInfo) return [];
+
+        let ingredientCounter = Object.keys(mealInfo).filter( (key) => key.includes("strIngredient"));
+            ingredientCounter = ingredientCounter.filter( (key) => mealInfo[key]);
+
+        let ingredients = ingredientCounter.map(
+            (currentIngredient) => {
+                const index = currentIngredient.replace("strIngredient", "");
+
+                const measurement = mealInfo[`strMeasure${index}`];
+
+                const ingredient = mealInfo[currentIngredient];
+
+                return (measurement + " " + ingredient);
+            }
+        )
+        
+        return ingredients
     }
 
-    const stringOfIngredients = getStringOfIngredients();
+    // const getStringOfIngredients = () => {
+    //     if (!mealInfo) return [];
+    //     let stringOfIngredients = Object.keys(mealInfo).filter( (key) => key.includes("strIngredient")) ;
+    //     stringOfIngredients = stringOfIngredients.filter( (key) => mealInfo[key]);
+
+    //     return stringOfIngredients;
+    // }
+
+    const ingredients = getIngredients();
 
     const handleOnMealItemClick = () => {
         onMealItemClick(meal);
@@ -29,9 +51,9 @@ export default function MealItem( {meal, onMealItemClick, selectedMeal, mealInfo
                                         </div>
                                         <div className="p-2 pl-4 flex flex-col gap-1">
                                         {
-                                            stringOfIngredients.map(
-                                                (currentStringIngredient) => (
-                                                    <p key={currentStringIngredient} className="text-md text-gray-400 hover:text-white capitalize">{mealInfo[currentStringIngredient]}</p>
+                                            ingredients.map(
+                                                (currentIngredients) => (
+                                                    <p key={currentIngredients} className="text-md text-gray-400 hover:text-white capitalize">{currentIngredients}</p>
                                                 )
                                             )
                                             
