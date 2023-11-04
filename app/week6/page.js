@@ -4,7 +4,6 @@ import { useState } from "react";
 
 import ItemList from "./item-list";
 import NewItem from "./new-item";
-import NavBar from "../navbar";
 
 import itemsJson from "./items.json";
 
@@ -19,9 +18,6 @@ export default function Page() {
 
   return (
     <main class="p-8 bg-slate-900 min-h-screen">
-        <div>
-          <NavBar />
-        </div>
 
         <div>
           <NewItem onAddItem={handleAddItem}/>
