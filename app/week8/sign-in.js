@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useUserAuth } from "./_utils/auth-context";
 import ShoppingList from "./shopping-list/page";
 
@@ -35,8 +36,13 @@ export default function SignIn() {
         <div className="p-4 border-b-2 border-gray-800">
             {
                 !user && (
-                    <div className="flex justify-center mt-2 mb-2">
+                    <div className="flex justify-center mt-2 mb-2 gap-4">
                         <Button contents="Sign in with GitHub" handler={handleSignIn} />
+                        <Link href="week8/shopping-list" className="border p-4 rounded-lg text-gray-400 border-gray-800 
+                            bg-gray-950 hover:bg-gray-800 hover:border-gray-700 hover:cursor-pointer 
+                              hover:text-white active:bg-slate-700">
+                            <span className="text-white">No</span> (Go to page without signing in)
+                        </Link>
                     </div>
                 )
             }
