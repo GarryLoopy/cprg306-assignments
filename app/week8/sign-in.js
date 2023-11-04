@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { useUserAuth } from "./_utils/auth-context";
-import ShoppingList from "./shopping-list/page";
 
 const Button = ( {contents, handler} ) => {
     return (
