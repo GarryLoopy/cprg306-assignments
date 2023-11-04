@@ -8,6 +8,10 @@ import MealIdeas from "./meal-ideas";
 
 import { useState } from "react";
 
+import { useUserAuth } from "../_utils/auth-context";
+
+import Link from "next/link";
+
 /**
  * Main component for the page 
  * @returns Main component for the page
@@ -17,6 +21,8 @@ export default function Page() {
     const [items, setItems] = useState([...jsonData]);
     const [selectedItem, setSelectedItem] = useState("bananas");
 
+    const { user } = useUserAuth();
+    
     /**
      * Handles add item
      * @param {object} item - An item object with name, category, quantity, and id
@@ -46,15 +52,27 @@ export default function Page() {
     }
 
     return (
-        <main className="flex bg-gray-900">
-            <div className="flex-1">
-                <NewItem onAddItem={handleAddItem}/>
-                <ItemList items={items} onItemSelect={handleOnItemSelect}/>
-            </div>
+        <main className="bg-gray-900 p-8">
+            {
+                user ? 
+                <div className="flex">
+                    <div className="flex-1">
+                        <NewItem onAddItem={handleAddItem}/>
+                        <ItemList items={items} onItemSelect={handleOnItemSelect}/>
+                    </div>
 
-            <div className="flex-1">
-                <MealIdeas ingredient={selectedItem}/>
-            </div>
+                    <div className="flex-1">
+                        <MealIdeas ingredient={selectedItem}/>
+                    </div>
+                </div>
+                :
+                <div className="text-center">
+                    <h1 className="text-2xl mb-4">Sorry but we hate guests. You need to be signed in first to view this page</h1>
+                    <Link href="/week8" className="hover:text-white active:bg-slate-700 hover:bg-gray-800 hover:border-gray-700 text-lg py-2 px-4 border border-gray-800 bg-gray-950 rounded-md">Go back to week 8</Link>
+                </div>
+            }
+
+
         </main>
     )
 }

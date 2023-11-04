@@ -1,4 +1,4 @@
-import StudentInfo from "./studentInfo";
+import StudentInfo from "./StudentInfo";
 import Week from "./week";
 import NavBar from "./navbar";
 
@@ -16,10 +16,6 @@ export default function Page() {
   return (
     <main class="flex flex-col p-8 h-screen  bg-slate-800">
       <div>
-        <div>
-          <NavBar />
-        </div>
-
         <div>
           <h1 class="text-4xl">CPRG 306: Web Development 2 - Assignments</h1>
           <StudentInfo />
