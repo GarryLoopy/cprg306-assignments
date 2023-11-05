@@ -42,7 +42,7 @@ export default function NewItem( { onAddItem } ) {
             <input className="px-2 py-3 text-center bg-gray-100 focus:bg-white hover:bg-white rounded-md" type="text" value={name} onChange={handleNameChange} placeholder="Item Name" required/>
             <input className="px-2 py-3 text-center bg-gray-100 focus:bg-white hover:bg-white rounded-md" type="number" min="1" max="99" value={quantity} onChange={handleQuantityChange} required/>
             
-            <select class="px-2 py-3 text-center bg-gray-100 focus:bg-white hover:bg-white rounded-md" value={category} onChange={handleCategoryChange}>
+            <select className="px-2 py-3 text-center bg-gray-100 focus:bg-white hover:bg-white rounded-md" value={category} onChange={handleCategoryChange}>
                 <option value="Produce">Produce</option>
                 <option value="Dairy">Dairy</option>
                 <option value="Bakery">Bakery</option>

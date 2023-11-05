@@ -6,17 +6,17 @@ const currentWeek = 8;
 function createDivWithComponents(n) {
   const components = [];
   for (let i = 2; i <= n; i++) {
-    components.push(<Week weekNumber={i} />);
+    components.push(<Week weekNumber={i} key={i}/>);
   }
   return <div>{components}</div>;
 }
 
 export default function Page() {
   return (
-    <main class="flex flex-col p-8 h-screen  bg-slate-800">
+    <main className="flex flex-col p-8 h-screen  bg-slate-800">
       <div>
         <div>
-          <h1 class="text-4xl">CPRG 306: Web Development 2 - Assignments</h1>
+          <h1 className="text-4xl">CPRG 306: Web Development 2 - Assignments</h1>
           <StudentInfo />
         </div>
 
