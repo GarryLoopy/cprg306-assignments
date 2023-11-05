@@ -50,7 +50,7 @@ export default function SignIn() {
                     <div className="flex justify-between">
                         <div className="flex flex-row gap-4 border-gray-800 border p-4 rounded-xl bg-gray-950 mt-auto mb-auto">
                             
-                            <img src={user.photoURL} className="w-10 h-10 rounded-full"/>
+                            <img src={user.photoURL} className="w-10 h-10 rounded-full" alt="User image"/>
                             <div>
                                 <p className="text-md">{user.displayName}</p>
                                 <p className="text-xs text-gray-400">{user.email}</p>

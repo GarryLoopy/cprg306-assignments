@@ -1,6 +1,5 @@
 import StudentInfo from "./StudentInfo";
 import Week from "./week";
-import NavBar from "./navbar";
 
 const currentWeek = 8;
 
