@@ -40,7 +40,7 @@ export default function SignIn() {
                         <Link href="week8/shopping-list" className="border p-4 rounded-lg text-gray-400 border-gray-800 
                             bg-gray-950 hover:bg-gray-800 hover:border-gray-700 hover:cursor-pointer 
                               hover:text-white active:bg-slate-700">
-                            <span className="text-white">No</span> (Go to page without signing in)
+                            No <span className="text-xs">(Go to page without signing in)</span>
                         </Link>
                     </div>
                 )
