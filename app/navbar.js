@@ -21,8 +21,10 @@ const getWeekObjects = () => {
     return weekObjects;
 }
 
+const pathname = window.location.pathname; // Gets current path name of active window
+
 export default function NavBar() {
-    const [selectedPath, setSelectedPath] = useState("/");
+    const [selectedPath, setSelectedPath] = useState(pathname);
 
     const handleOnSelect = (path) => {
         setSelectedPath(path);
