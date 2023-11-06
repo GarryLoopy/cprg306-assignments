@@ -52,7 +52,7 @@ export default function Page() {
     }
 
     return (
-        <main className="bg-gray-900 p-8">
+        <main className="bg-gray-900">
             {
                 user ? 
                 <div className="flex">
