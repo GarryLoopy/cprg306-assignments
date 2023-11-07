@@ -21,6 +21,7 @@ export default function SignIn() {
         try {
             await gitHubSignIn();
         } catch (error) {
+            console.error("Something went wrong with signing into GitHub")
             console.error(error);
         }
     }
@@ -29,12 +30,9 @@ export default function SignIn() {
         try {
             await firebaseSignOut();
         } catch (error) {
+            console.error("Something went wrong with signing out")
             console.error(error);
         }
-    }
-
-    const handleMinimize = () => {
-        alert("Minimize");
     }
 
     return (
