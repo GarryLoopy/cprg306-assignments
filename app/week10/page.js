@@ -59,7 +59,7 @@
 export default function Page() {
     return (
         <main>
-            
+            <h1 className="text-center text-4xl">Nothing available yet for Week 10</h1>
         </main>
     )
 }

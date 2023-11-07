@@ -4,12 +4,13 @@ import { useState } from 'react';
 
 import LinkItem from './link-item';
 
-const currentWeek = 8;
+const currentWeek = 10;
 
 const getWeekObjects = () => {
     let weekObjects = [];
 
     for (let index = 2; index <= currentWeek; index++) {
+        if (index === 9) continue;
         weekObjects.push(
             {
                 path: `/week${index}`,

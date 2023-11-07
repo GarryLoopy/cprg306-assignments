@@ -66,9 +66,9 @@ export default function Page() {
                     </div>
                 </div>
                 :
-                <div className="text-center">
+                <div className="text-center p-8">
                     <h1 className="text-2xl mb-4">Sorry, but we hate guests. You need to be signed in first to view this page</h1>
-                    <Link href="/week8" className="hover:text-white active:bg-slate-700 hover:bg-gray-800 hover:border-gray-700 text-lg py-2 px-4 border border-gray-800 bg-gray-950 rounded-md">Go back to week 8</Link>
+                    <Link href="/week8" className="hover:text-white active:bg-slate-700 hover:bg-gray-800 hover:border-gray-700 text-lg pl-4 pr-4 pt-4 pb-4 border border-gray-800 bg-gray-950 rounded-md">Go back to week 8</Link>
                 </div>
             }
 

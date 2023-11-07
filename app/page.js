@@ -1,11 +1,12 @@
 import StudentInfo from "./StudentInfo";
 import Week from "./week";
 
-const currentWeek = 8;
+const currentWeek = 10;
 
 function createDivWithComponents(n) {
   const components = [];
   for (let i = 2; i <= n; i++) {
+    if (i === 9) continue;
     components.push(<Week weekNumber={i} key={i}/>);
   }
   return <div>{components}</div>;
