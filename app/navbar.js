@@ -9,12 +9,19 @@ const currentWeek = 10;
 const getWeekObjects = () => {
     let weekObjects = [];
 
+    weekObjects.push(
+        {
+            path: `/`,
+            title: `Home`
+        }
+    )
+
     for (let index = 2; index <= currentWeek; index++) {
         if (index === 9) continue;
         weekObjects.push(
             {
                 path: `/week${index}`,
-                week: index
+                title: `Week ${index}`
             }
         )
     }
@@ -22,10 +29,9 @@ const getWeekObjects = () => {
     return weekObjects;
 }
 
-export default function NavBar( {onPathChange} ) {
+export default function NavBar() {
     // BUG: Navigation bar defaults to Home outline after each web browser reload
     const [selectedPath, setSelectedPath] = useState("/");
-
 
     const handleOnSelect = (path) => {
         setSelectedPath(path);
@@ -33,21 +39,18 @@ export default function NavBar( {onPathChange} ) {
 
     const linkItems = getWeekObjects();
     return (
-        <nav className="text-white py-4 px-4 border-b-2 border-gray-800">
+        <nav className="text-white py-3 px-4 border-b-2 border-gray-800">
             <div>
-                <ul className="flex space-x-3">
-                    <li><LinkItem path='/' title='Home' onSelect={handleOnSelect} selectedPath={selectedPath == "/"} /></li>
+                <ul className="flex gap-2">
                     {
                         linkItems.map(
                             (week) => (
                                 <li key={week.week}>
-                                    <LinkItem path={week.path} title={`Week ${week.week}`} onSelect={handleOnSelect} selectedPath={selectedPath == week.path} />
+                                    <LinkItem path={week.path} title={week.title} onSelect={handleOnSelect} selectedPath={selectedPath == week.path} />
                                 </li>
                             )
                         )
                     }
-
-                    <li><LinkItem path='/studentProject' title='Other students project' onSelect={handleOnSelect} selectedPath={selectedPath == "/studentProject"}  /></li>
                 </ul>
             </div>
         </nav>
