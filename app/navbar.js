@@ -45,7 +45,7 @@ export default function NavBar() {
                     {
                         linkItems.map(
                             (week) => (
-                                <li key={week.week}>
+                                <li key={week.title}>
                                     <LinkItem path={week.path} title={week.title} onSelect={handleOnSelect} selectedPath={selectedPath == week.path} />
                                 </li>
                             )
