@@ -43,10 +43,17 @@ export default function Page() {
      * @param {object} item - An item object with name, category, quantity, and id
      */
     const handleAddItem = (item) => {
-        addItem(user.uid, item);
+        const docId = addItem(user.uid, item);
         
         // Set the items for the items state
-        setItems( [...items, item] )
+        setItems( 
+            [...items, 
+                {
+                    documentID: docId,
+                    data: item
+                }
+            ] 
+        )
     }
 
     /**

@@ -2,19 +2,6 @@
 
 import { useState } from "react";
 
-const generateRandomId = () => {
-    const possibleChars = "1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
-    const length = possibleChars.length;
-    const idLength = 18;
-
-    let currentId = "";
-    for (let i = 0; i < idLength; i++) {
-        currentId += possibleChars.charAt(Math.random() * length);
-    }
-
-    return currentId;
-}
-
 export default function NewItem( { onAddItem } ) {
     const [name, setName] = useState("");
     const [quantity, setQuantity] = useState(1);
@@ -29,8 +16,7 @@ export default function NewItem( { onAddItem } ) {
         const newItem = {
             name: name.toLowerCase(),
             quantity: quantity,
-            category: category.toLowerCase(),
-            id: generateRandomId(),
+            category: category.toLowerCase()
         }  
 
         onAddItem(newItem)

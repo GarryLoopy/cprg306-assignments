@@ -19,7 +19,12 @@ export const getShoppingList = async (userId) => {
     let items = [];
     querySnapshot.forEach(
         (doc) => {
-            items.push( doc.data() )
+            items.push( 
+                {
+                    documentID: doc.id,
+                    data: doc.data() 
+                }
+            )
         }
     )
 
