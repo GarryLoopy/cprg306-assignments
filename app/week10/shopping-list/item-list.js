@@ -3,15 +3,51 @@
 import { useState } from "react";
 import Item from "./item";
 import Navigation from "./navigation";
+import ExtraOptions from "./extra-options";
 
 export default function ItemList({ items, onItemSelect }) {
   const [sortBy, setSortBy] = useState("name");
   const [groupedByCategory, setGroupedByCategory] = useState(false);
-  const [selectedItemId, setSelectedItemId] = useState("");
+
+  const [allowSelectMultiple, setAllowSelectMultiple] = useState(false);
+
+  const [selectedItemId, setSelectedItemId] = useState([]);
+
+  const [previousID, setPreviousID] = useState([]);
 
   const handleOnItemSelect = (item) => {
-    setSelectedItemId(item["documentID"]);
-    onItemSelect(item);
+
+    if (allowSelectMultiple) {
+      if (selectedItemId.includes(item.documentID)) {
+        //somehow remove it in the array
+        const data = selectedItemId.filter(
+          (documentID) => item.documentID !== documentID
+        )
+        setSelectedItemId(data);
+        return;
+      }
+
+      setSelectedItemId(
+        [
+          ...selectedItemId,
+          item.documentID
+        ]
+      )
+      return;
+    }
+
+    // Unselect id
+    if (selectedItemId.length === 1 && selectedItemId.includes(item.documentID)) {
+      setSelectedItemId([]);
+      onItemSelect("");
+      return;
+    }
+      
+
+    // Select to new ID
+    setSelectedItemId([item.documentID]);
+    setPreviousID([item.documentID]);
+    onItemSelect(item.data);
   };
 
   const handleOnNavigationSelect = (contentType) => {
@@ -76,9 +112,18 @@ export default function ItemList({ items, onItemSelect }) {
     }, []);
   }
 
+  const handleOnOptionSelect = () => {
+    setAllowSelectMultiple(!allowSelectMultiple);
+
+    if (allowSelectMultiple) {
+      setSelectedItemId(previousID);
+    }
+  }
+
   return (
     <div className="mr-4 ml-4">
       <Navigation onItemSelect={handleOnNavigationSelect} />
+      <ExtraOptions onOptionClick={handleOnOptionSelect}/>
       <ul className="flex flex-col mb-4 gap-2">
         {groupedByCategory
           ? displayedItems.map((group) => (
@@ -87,10 +132,10 @@ export default function ItemList({ items, onItemSelect }) {
                 <ul className="flex flex-col gap-2">
                   {group.items.map((item) => (
                     <Item
-                      item={item.data}
+                      item={item}
                       key={item.documentID}
                       onItemSelect={handleOnItemSelect}
-                      selectedItem={item.documentID === selectedItemId}
+                      selectedItem={selectedItemId.includes(item.documentID)}
                     />
                   ))}
                 </ul>
@@ -98,10 +143,10 @@ export default function ItemList({ items, onItemSelect }) {
             ))
           : displayedItems.map((item) => (
               <Item
-                item={item.data}
+                item={item}
                 key={item.documentID}
                 onItemSelect={handleOnItemSelect}
-                selectedItem={item.documentID === selectedItemId}
+                selectedItem={selectedItemId.includes(item.documentID)}
               />
             ))}
       </ul>

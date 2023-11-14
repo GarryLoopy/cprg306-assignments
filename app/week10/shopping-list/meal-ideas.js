@@ -28,8 +28,6 @@ export default function MealIdeas( {ingredient} ) {
     }
 
     const loadMealInfos = async () => {
-        if (!meals) return;
-
         const currentMealInfos = {};
         await Promise.all(
             meals.map(
@@ -49,6 +47,14 @@ export default function MealIdeas( {ingredient} ) {
     useEffect(
         () => {
             try {
+
+                if (!ingredient) {
+                    setSelectedMeal("");
+                    setMealInfos([]);
+                    setMeals([]);
+
+                    return;
+                }
                 loadMealIdeas();
 
                 setSelectedMeal("");
@@ -83,8 +89,21 @@ export default function MealIdeas( {ingredient} ) {
     return (
         <div className="m-4 p-4 border rounded-md border-gray-800 bg-gray-950">
             <div className="mb-4 flex flex-col gap-1">
-                <h2 className="text-2xl">Meal Ideas for {ingredient}</h2>
-                <h2 className="text-sm">{meals ? `Found ${meals.length} meal ideas for ${ingredient}` : `No meal ideas found for ${ingredient}`}</h2>
+                <h2 className="text-2xl">
+                    { ingredient ?
+                        `Meal ideas for ${ingredient}`
+                        :
+                        "Meal ideas (select an item)"
+                    }
+                </h2>
+                {ingredient &&
+                    <h2 className="text-sm">
+                        {meals ? 
+                            `Found ${meals.length} meal ideas for ${ingredient}` : 
+                            `No meal ideas found for ${ingredient}`
+                        }
+                    </h2>
+                }
             </div> 
             
             <ul className="flex flex-col gap-4">

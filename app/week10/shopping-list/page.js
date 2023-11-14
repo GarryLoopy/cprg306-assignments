@@ -21,7 +21,7 @@ import { useEffect } from "react";
 export default function Page() {
     // States for the page
     const [items, setItems] = useState([]);
-    const [selectedItem, setSelectedItem] = useState("bananas");
+    const [selectedItem, setSelectedItem] = useState("");
 
     const { user } = useUserAuth();
 
@@ -61,6 +61,12 @@ export default function Page() {
      * @param {object} item - An item object with name, category, quantity and id
      */
     const handleOnItemSelect = (item) => {
+        if (!item) {
+            setSelectedItem(item);
+            return;
+        }
+
+
         // Get rid of emojis
         let finalItemName = item["name"].replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '');
         
