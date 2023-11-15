@@ -1,6 +1,6 @@
 import NavButton from "./nav-button";
 
-export default function ExtraOptions( { onOptionClick, onDeleteClick, count, isSelected } ) {
+export default function ExtraOptions( { onOptionClick, onDeleteClick, count, isSelected, allowDelete } ) {
 
     const handleClick = () => {
         onOptionClick();
@@ -16,7 +16,7 @@ export default function ExtraOptions( { onOptionClick, onDeleteClick, count, isS
                 <NavButton contents={`${isSelected ? "Finish" : "Select"}`} selectedState={isSelected} onButtonClick={handleClick}/> 
             </div>
             <div>
-                {   isSelected &&
+                {   allowDelete &&
                     <NavButton contents={`Delete ${count} item(s)`} onButtonClick={handleOnDeleteClick}/> 
                 }
             </div>
