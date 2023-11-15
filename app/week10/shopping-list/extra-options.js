@@ -2,12 +2,16 @@ import NavButton from "./nav-button";
 
 import { useState } from "react";
 
-export default function ExtraOptions( { onOptionClick } ) {
+export default function ExtraOptions( { onOptionClick, onDeleteClick, count } ) {
     const [selected, setSelected] = useState(false);
 
     const handleClick = () => {
         setSelected(!selected);
         onOptionClick();
+    }
+
+    const handleOnDeleteClick = () => {
+        onDeleteClick();
     }
 
     return (
@@ -17,7 +21,7 @@ export default function ExtraOptions( { onOptionClick } ) {
             </div>
             <div>
                 {   selected &&
-                    <NavButton contents="Delete"/> 
+                    <NavButton contents={`Delete ${count} item(s)`} onButtonClick={handleOnDeleteClick}/> 
                 }
             </div>
                        

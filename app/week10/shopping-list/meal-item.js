@@ -24,14 +24,6 @@ export default function MealItem( {meal, onMealItemClick, selectedMeal, mealInfo
         return ingredients
     }
 
-    // const getStringOfIngredients = () => {
-    //     if (!mealInfo) return [];
-    //     let stringOfIngredients = Object.keys(mealInfo).filter( (key) => key.includes("strIngredient")) ;
-    //     stringOfIngredients = stringOfIngredients.filter( (key) => mealInfo[key]);
-
-    //     return stringOfIngredients;
-    // }
-
     const ingredients = getIngredients();
 
     const handleOnMealItemClick = () => {

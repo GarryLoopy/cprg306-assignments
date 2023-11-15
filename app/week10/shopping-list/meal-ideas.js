@@ -28,6 +28,7 @@ export default function MealIdeas( {ingredient} ) {
     }
 
     const loadMealInfos = async () => {
+        if (!meals) return;
         const currentMealInfos = {};
         await Promise.all(
             meals.map(

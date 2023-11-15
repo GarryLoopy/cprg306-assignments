@@ -1,12 +1,13 @@
 import { db } from "../_utils/firebase";
-import { collection, getDocs, addDoc, query } from "firebase/firestore"; 
 
-// The data in Cloud Firestore will have the following structure.
-
-//     users collection
-//         userId document
-//             items subcollection
-//                 itemId document
+import { 
+    collection, 
+    getDocs, 
+    addDoc, 
+    query, 
+    doc ,
+    deleteDoc
+} from "firebase/firestore"; 
 
 
 export const getShoppingList = async (userId) => {
@@ -37,4 +38,9 @@ export const addItem = async (userId, item) => {
     )
 
     return docRef.id;
+}
+
+export const deleteItem = async (userId, documentId) => {
+    const docRef = doc(db, "users", userId, "items", documentId);
+    await deleteDoc(docRef);
 }

@@ -3,7 +3,7 @@
 import ItemList from "./item-list";
 import NewItem from "./new-item";
 
-import { addItem, getShoppingList } from "../_services/shopping-list-service";
+import { addItem, getShoppingList, deleteItem } from "../_services/shopping-list-service";
 
 import MealIdeas from "./meal-ideas";
 
@@ -42,8 +42,8 @@ export default function Page() {
      * Handles add item
      * @param {object} item - An item object with name, category, quantity, and id
      */
-    const handleAddItem = (item) => {
-        const docId = addItem(user.uid, item);
+    const handleAddItem = async (item) => {
+        const docId = await addItem(user.uid, item);
         
         // Set the items for the items state
         setItems( 
@@ -80,6 +80,30 @@ export default function Page() {
         setSelectedItem(finalItemName);
     }
 
+
+    const handleOnItemDelete = async (itemList) => {
+        //Set new meal items
+        setItems(
+            items.filter(
+                (item) => !itemList.includes(item.documentID)
+            )
+        )
+
+        //Delete items
+        await Promise.all(
+            itemList.map(
+                async (currentItem)=> {
+                    await deleteItem(user.uid, currentItem);
+                }   
+            )
+        )
+
+    }
+
+    const handleResetSelectedItem = () => {
+        setSelectedItem("");
+    }
+
     return (
         <main className="bg-gray-900">
             {
@@ -87,7 +111,10 @@ export default function Page() {
                 <div className="flex">
                     <div className="flex-1">
                         <NewItem onAddItem={handleAddItem}/>
-                        <ItemList items={items} onItemSelect={handleOnItemSelect}/>
+                        <ItemList items={items} 
+                                  onItemSelect={handleOnItemSelect} 
+                                  onItemListDelete={handleOnItemDelete}
+                                  onResetSelectedItem={handleResetSelectedItem}/>
                     </div>
 
                     <div className="flex-1">

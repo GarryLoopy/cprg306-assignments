@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Item from "./item";
 import Navigation from "./navigation";
 import ExtraOptions from "./extra-options";
 
-export default function ItemList({ items, onItemSelect }) {
+export default function ItemList({ items, onItemSelect, onItemListDelete, onResetSelectedItem}) {
   const [sortBy, setSortBy] = useState("name");
   const [groupedByCategory, setGroupedByCategory] = useState(false);
 
@@ -14,6 +14,23 @@ export default function ItemList({ items, onItemSelect }) {
   const [selectedItemId, setSelectedItemId] = useState([]);
 
   const [previousID, setPreviousID] = useState([]);
+
+  const handleResetSelectedItem = () => onResetSelectedItem();
+
+  useEffect(
+    () => {
+      // previously selected item still in the items array
+      if (items.some( (item)  => previousID.includes(item.documentID))) {
+        setSelectedItemId(previousID);
+        setPreviousID(previousID);
+        return;
+      }
+      
+      setSelectedItemId([]);
+      setPreviousID([]);
+      handleResetSelectedItem();
+    }, [items]
+  )
 
   const handleOnItemSelect = (item) => {
 
@@ -39,6 +56,7 @@ export default function ItemList({ items, onItemSelect }) {
     // Unselect id
     if (selectedItemId.length === 1 && selectedItemId.includes(item.documentID)) {
       setSelectedItemId([]);
+      setPreviousID([]);
       onItemSelect("");
       return;
     }
@@ -115,41 +133,48 @@ export default function ItemList({ items, onItemSelect }) {
   const handleOnOptionSelect = () => {
     setAllowSelectMultiple(!allowSelectMultiple);
 
-    if (allowSelectMultiple) {
-      setSelectedItemId(previousID);
-    }
+    setSelectedItemId(previousID);
   }
+
+  const handleOnDeleteClick = () => {
+    // Do nothing if length is less or equal to than 0
+    if (selectedItemId.length <= 0) return;
+    
+    onItemListDelete(selectedItemId);
+  }
+
 
   return (
     <div className="mr-4 ml-4">
       <Navigation onItemSelect={handleOnNavigationSelect} />
-      <ExtraOptions onOptionClick={handleOnOptionSelect}/>
+      <ExtraOptions onOptionClick={handleOnOptionSelect} onDeleteClick={handleOnDeleteClick} count={selectedItemId.length}/>
       <ul className="flex flex-col mb-4 gap-2">
-        {groupedByCategory
-          ? displayedItems.map((group) => (
-              <div key={group.category}>
-                <h2 className="text-xl capitalize pl-2 mt-2">{group.category}</h2>
-                <ul className="flex flex-col gap-2">
-                  {group.items.map((item) => (
-                    <Item
-                      item={item}
-                      key={item.documentID}
-                      onItemSelect={handleOnItemSelect}
-                      selectedItem={selectedItemId.includes(item.documentID)}
-                    />
-                  ))}
-                </ul>
-              </div>
-            ))
-          : displayedItems.map((item) => (
-              <Item
-                item={item}
-                key={item.documentID}
-                onItemSelect={handleOnItemSelect}
-                selectedItem={selectedItemId.includes(item.documentID)}
-              />
-            ))}
-      </ul>
+      {groupedByCategory
+        ? displayedItems.map((group) => (
+            <div key={group.category}>
+              <h2 className="text-xl capitalize pl-2 mt-2">{group.category}</h2>
+              <ul className="flex flex-col gap-2">
+                {group.items.map((item) => (
+                  <Item
+                    item={item}
+                    key={item.documentID} // Use a unique key or a fallback
+                    onItemSelect={handleOnItemSelect}
+                    selectedItem={selectedItemId.includes(item.documentID)}
+                  />
+                ))}
+              </ul>
+            </div>
+          ))
+        : displayedItems.map((item) => (
+            <Item
+              item={item}
+              key={item.documentID} // Use a unique key or a fallback
+              onItemSelect={handleOnItemSelect}
+              selectedItem={selectedItemId.includes(item.documentID)}
+            />
+          ))}
+    </ul>
+
     </div>
   );
 }
