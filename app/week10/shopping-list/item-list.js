@@ -150,7 +150,7 @@ export default function ItemList({ items, onItemSelect, onItemListDelete, onRese
         <Navigation onItemSelect={handleOnNavigationSelect} />
       }
       {displayedItems.length > 0 &&
-        <ExtraOptions onOptionClick={handleOnOptionSelect} onDeleteClick={handleOnDeleteClick} count={selectedItemId.length}/>
+        <ExtraOptions onOptionClick={handleOnOptionSelect} onDeleteClick={handleOnDeleteClick} count={selectedItemId.length} isSelected={allowSelectMultiple}/>
       }
       <ul className="flex flex-col mb-4 gap-2">
       {groupedByCategory

@@ -1,12 +1,8 @@
 import NavButton from "./nav-button";
 
-import { useState } from "react";
-
-export default function ExtraOptions( { onOptionClick, onDeleteClick, count } ) {
-    const [selected, setSelected] = useState(false);
+export default function ExtraOptions( { onOptionClick, onDeleteClick, count, isSelected } ) {
 
     const handleClick = () => {
-        setSelected(!selected);
         onOptionClick();
     }
 
@@ -17,10 +13,10 @@ export default function ExtraOptions( { onOptionClick, onDeleteClick, count } ) 
     return (
         <div className="flex justify-between mt-4">
             <div>
-                <NavButton contents={`${selected ? "Finish" : "Select"}`} selectedState={selected} onButtonClick={handleClick}/> 
+                <NavButton contents={`${isSelected ? "Finish" : "Select"}`} selectedState={isSelected} onButtonClick={handleClick}/> 
             </div>
             <div>
-                {   selected &&
+                {   isSelected &&
                     <NavButton contents={`Delete ${count} item(s)`} onButtonClick={handleOnDeleteClick}/> 
                 }
             </div>
