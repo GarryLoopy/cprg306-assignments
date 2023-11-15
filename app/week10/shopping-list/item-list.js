@@ -25,7 +25,7 @@ export default function ItemList({ items, onItemSelect, onItemListDelete, onRese
         setPreviousID(previousID);
         return;
       }
-      
+
       setSelectedItemId([]);
       setPreviousID([]);
       handleResetSelectedItem();
@@ -146,8 +146,12 @@ export default function ItemList({ items, onItemSelect, onItemListDelete, onRese
 
   return (
     <div className="mr-4 ml-4">
-      <Navigation onItemSelect={handleOnNavigationSelect} />
-      <ExtraOptions onOptionClick={handleOnOptionSelect} onDeleteClick={handleOnDeleteClick} count={selectedItemId.length}/>
+      { displayedItems.length > 0 &&
+        <Navigation onItemSelect={handleOnNavigationSelect} />
+      }
+      {displayedItems.length > 0 &&
+        <ExtraOptions onOptionClick={handleOnOptionSelect} onDeleteClick={handleOnDeleteClick} count={selectedItemId.length}/>
+      }
       <ul className="flex flex-col mb-4 gap-2">
       {groupedByCategory
         ? displayedItems.map((group) => (
@@ -157,7 +161,7 @@ export default function ItemList({ items, onItemSelect, onItemListDelete, onRese
                 {group.items.map((item) => (
                   <Item
                     item={item}
-                    key={item.documentID} // Use a unique key or a fallback
+                    key={item.documentID}
                     onItemSelect={handleOnItemSelect}
                     selectedItem={selectedItemId.includes(item.documentID)}
                   />
@@ -168,11 +172,16 @@ export default function ItemList({ items, onItemSelect, onItemListDelete, onRese
         : displayedItems.map((item) => (
             <Item
               item={item}
-              key={item.documentID} // Use a unique key or a fallback
+              key={item.documentID}
               onItemSelect={handleOnItemSelect}
               selectedItem={selectedItemId.includes(item.documentID)}
             />
           ))}
+          {displayedItems.length <= 0 &&
+            <h1 className="text-xl p-6 border rounded-md border-gray-800 bg-gray-950">
+              You currently have no items... why not add some?
+            </h1>
+          }
     </ul>
 
     </div>
