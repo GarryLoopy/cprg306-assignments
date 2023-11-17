@@ -8,13 +8,9 @@ import ExtraOptions from "./extra-options";
 export default function ItemList({ items, onItemSelect, onItemListDelete, onResetSelectedItem}) {
   const [sortBy, setSortBy] = useState("name");
   const [groupedByCategory, setGroupedByCategory] = useState(false);
-
   const [allowSelectMultiple, setAllowSelectMultiple] = useState(false);
-
   const [selectedItemId, setSelectedItemId] = useState([]);
-
   const [previousID, setPreviousID] = useState([]);
-
   const handleResetSelectedItem = () => onResetSelectedItem();
 
   useEffect(

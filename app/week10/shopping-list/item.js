@@ -1,5 +1,15 @@
+/**
+ * Represents an item component
+ * @param {Object} item An item object with documentID, category, quantity and name.
+ * @param {Function} onItemSelect A function that handles when the item is clicked
+ * @param {boolean} selectedItem Represents a separate state, true if the current item should be represented in a different way (clicked or selected)
+ * @returns An item component
+ */
 export default function Item( {item, onItemSelect, selectedItem} ) {
 
+    /**
+     * Handler for the on click of the item
+     */
     const handleOnItemSelect = () => {
         onItemSelect(item);
     }

@@ -1,3 +1,5 @@
+"use client";
+
 import StudentInfo from "./StudentInfo";
 import Week from "./week";
 
@@ -7,10 +9,11 @@ function createDivWithComponents(n) {
   const components = [];
   for (let i = 2; i <= n; i++) {
     if (i === 9) continue;
-    components.push(<Week weekNumber={i} key={i}/>);
+    components.push(<Week weekNumber={i} key={i} />);
   }
   return <div>{components}</div>;
 }
+
 
 export default function Page() {
   return (
@@ -23,10 +26,12 @@ export default function Page() {
 
         {createDivWithComponents(currentWeek)}
       </div>
-
+      <div>
+        <audio controls>
+          <source src="/huh.mp3" type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
+      </div>
     </main>
   );
 }
-
-
-

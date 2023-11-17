@@ -13,6 +13,7 @@
     "encoding": "^0.1.13",
     "eslint": "8.49.0",
     "eslint-config-next": "13.4.19",
+    "file-loader": "^6.2.0",
     "firebase": "^10.5.2",
     "next": "^14.0.1",
     "postcss": "^8.4.31",
