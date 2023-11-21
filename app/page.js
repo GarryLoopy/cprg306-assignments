@@ -16,6 +16,7 @@ function createDivWithComponents(n) {
 
 
 export default function Page() {
+
   return (
     <main className="flex flex-col p-8 h-screen  bg-slate-800">
       <div>
@@ -23,9 +24,9 @@ export default function Page() {
           <h1 className="text-4xl">CPRG 306: Web Development 2 - Assignments</h1>
           <StudentInfo />
         </div>
-
         {createDivWithComponents(currentWeek)}
       </div>
+
       <div>
         <audio controls>
           <source src="/huh.mp3" type="audio/mpeg" />
